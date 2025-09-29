@@ -187,7 +187,14 @@ dotnet ef database update -p Infrastructure -s Api
 ---
 
 ## 3. API Layer
-
+### Controller Rules
+- **Thin Controllers**: Only receive/return data — logic in Application Services
+- **No Database Access**: Use Application Services only
+- Use DTOs/ViewModels for requests/responses (never return Domain entities directly)
+- Routing: [Route("api/[controller]")] with REST conventions
+- Always validate input with ModelState.IsValid or FluentValidation
+- **ProducesResponseType Attributes**: Document all possible HTTP status codes with response types
+  
 - REST Controller Example:
 
 csharp
